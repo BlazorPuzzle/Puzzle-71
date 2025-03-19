@@ -37,7 +37,7 @@ This way, we can keep track of the modified properties without having to modify 
 <div class="mb-3">
     <label for="email">Email:</label>
     <input class="form-control" @bind="customer.Email" 
-        @oninput='(e) => SetDirtyFlag("customer.Name", e.Value)' />
+        @oninput='(e) => SetDirtyFlag("customer.Email", e.Value)' />
 </div>
 ```
 
