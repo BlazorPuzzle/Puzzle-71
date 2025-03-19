@@ -1,0 +1,69 @@
+﻿@page "/"
+@inject NavigationManager navigationManager
+
+<h3>Puzzle #71 - Dirty Models</h3>
+
+<p>This is a .NET 9 Blazor Web App with Global Server Interactivity</p>
+<p>Imagine that we have an existing app with 50+ models (some having 30+ properties) and 80+ pages for editing.</p>
+<p>
+    The boss wants you to implement a "Dirty Flag" so that when we hit the save button,
+    we know which fields on which models have changed, and therefore what needs to be updated.
+</p>
+<p>The problem is, he wants it done in 2 hours, not a week, as was your estimate.</p>
+<p>
+    Your idea was to expand the getters and setters of each property in each model and set a Boolean
+    property indicating that the model properties have changed and therefore need to be updated.
+</p>
+<p>Is there a shortcut to implement dirty flags without having to modify the models?</p>
+
+<div class="mb-3">
+    <label for="name">Name:</label>
+    <input class="form-control" @bind="customer.Name" />
+</div>
+
+<div class="mb-3">
+    <label for="email">Email:</label>
+    <input class="form-control" @bind="customer.Email" />
+</div>
+
+<button @onclick="SaveCustomer" class="btn btn-primary">Save</button>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-success">@message</div>
+}
+
+@code {
+    private Customer customer = new Customer();
+    private string message;
+
+    private void SaveCustomer()
+    {
+        // Simulate saving to a database
+        message = $"Customer {customer.Name} saved successfully!";
+    }
+
+    protected override void OnInitialized()
+    {
+        navigationManager.LocationChanged += OnLocationChanged;
+
+        // Simulate getting the record from a data store
+        customer.Name = "Isadora Jarr";
+        customer.Email = "isadora@jarr.com";
+    }
+
+    void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        // How can we check a dirty flag here if the user navigates away?
+        
+    }
+
+    public class Customer
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+    }
+}
