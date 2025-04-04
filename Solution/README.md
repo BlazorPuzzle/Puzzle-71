@@ -1,7 +1,7 @@
 # Puzzle #71 - Dirty Models
 Carl and Jeff want to know how to implement a dirty flag without modifying model classes.
 
-YouTube Video: https://youtu.be/
+YouTube Video: https://youtu.be/vS7r-PXCjHo
 
 Blazor Puzzle Home Page: https://blazorpuzzle.com
 
